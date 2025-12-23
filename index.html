@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OS Process Scheduling Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🖥️ OS Process Scheduling Simulator</h1>
+    <p>Visualize CPU Scheduling Algorithms</p>
+    <button id="themeToggle">🌞 Light/Dark Mode</button>
+  </header>
+
+  <main class="container">
+    <!-- INPUT PANEL -->
+    <section class="card">
+      <h2>Process Input</h2>
+      <div class="form-grid">
+        <input type="text" id="pid" placeholder="Process ID (P1)" />
+        <input type="number" id="arrival" placeholder="Arrival Time" min="0" />
+        <input type="number" id="burst" placeholder="Burst Time" min="1" />
+        <input type="number" id="priority" placeholder="Priority (Optional)" />
+      </div>
+      <div class="btn-group">
+        <button onclick="addProcess()">Add Process</button>
+        <button class="danger" onclick="resetAll()">Reset All</button>
+      </div>
+    </section>
+
+    <!-- ALGORITHM PANEL -->
+    <section class="card">
+      <h2>Scheduling Algorithm</h2>
+      <select id="algorithm">
+        <option value="FCFS">First Come First Serve</option>
+        <option value="SJF">Shortest Job First (Non-Preemptive)</option>
+        <option value="SRTF">Shortest Remaining Time First</option>
+        <option value="PRIORITY_NP">Priority (Non-Preemptive)</option>
+        <option value="PRIORITY_P">Priority (Preemptive)</option>
+        <option value="RR">Round Robin</option>
+      </select>
+
+      <input type="number" id="quantum" placeholder="Time Quantum (RR)" min="1" />
+
+      <div class="btn-group">
+        <button onclick="startSimulation()">▶ Start</button>
+        <button onclick="pauseSimulation()">⏸ Pause</button>
+        <button onclick="resetSimulation()">⏹ Reset</button>
+      </div>
+    </section>
+
+    <!-- GANTT CHART -->
+    <section class="card">
+      <h2>Gantt Chart</h2>
+      <div id="gantt"></div>
+    </section>
+
+    <!-- PROCESS TABLE -->
+    <section class="card">
+      <h2>Process Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>AT</th>
+            <th>BT</th>
+            <th>CT</th>
+            <th>TAT</th>
+            <th>WT</th>
+            <th>RT</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="processTable"></tbody>
+      </table>
+    </section>
+
+    <!-- METRICS -->
+    <section class="card">
+      <h2>Performance Metrics</h2>
+      <div id="metrics"></div>
+    </section>
+
+    <!-- EDUCATIONAL INFO -->
+    <section class="card">
+      <h2>Algorithm Explanation</h2>
+      <div id="explanation"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Designed for OS Labs & Learning</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
